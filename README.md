@@ -13,7 +13,7 @@ signage — lives at the artifact URL in `GUIDE.url`. This package is the machin
 There is no npm registry involved and there does not need to be. Pin a git tag:
 
 ```bash
-pnpm add github:amelspahic/aesc-brand#v1.0.0
+pnpm add github:amelspahic/aesc-brand#v1.0.1
 ```
 
 Nothing here has a dependency, a build output, or a runtime. It is CSS, JSON and SVG.
@@ -83,7 +83,7 @@ Four steps, and none of them is "open the PDF and match the colours by eye".
 
 ```bash
 # 1. install
-pnpm add github:amelspahic/aesc-brand#v1.0.0
+pnpm add github:amelspahic/aesc-brand#v1.0.1
 
 # 2. fonts — one link, latin-ext included
 #    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..700&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -157,5 +157,5 @@ The website still imports `brand/tokens.theme.css` by relative path, because it 
 home. A *second* project installs the published package instead:
 
 ```bash
-pnpm add github:amelspahic/aesc-brand#v1.0.0
+pnpm add github:amelspahic/aesc-brand#v1.0.1
 ```
