@@ -5,9 +5,16 @@
   "license": "UNLICENSED",
   "private": true,
   "type": "module",
-  "files": ["tokens.css", "tokens.json", "znak", "README.md"],
+  "files": [
+    "tokens.css",
+    "tokens.theme.css",
+    "tokens.json",
+    "znak",
+    "README.md"
+  ],
   "exports": {
     "./tokens.css": "./tokens.css",
+    "./tokens.theme.css": "./tokens.theme.css",
     "./tokens.json": "./tokens.json",
     "./znak/znak.svg": "./znak/znak.svg",
     "./znak/znak-mali.svg": "./znak/znak-mali.svg",

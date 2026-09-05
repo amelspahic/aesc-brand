@@ -22,8 +22,16 @@ Nothing here has a dependency, a build output, or a runtime. It is CSS, JSON and
 
 **CSS variables** — one import, then style through the tokens and never through a literal.
 
+There are two builds of the same values and picking the wrong one fails quietly:
+
+| File | For | What happens if you pick the other one |
+|---|---|---|
+| `tokens.css` | plain CSS, print templates, decks, anything not Tailwind | — |
+| `tokens.theme.css` | **Tailwind 4** | Tailwind makes a utility class from every name inside `@theme`. The same declarations in `:root` give you the values and **no classes** — so `bg-zlato`, `text-hero` and `p-odjeljak` silently stop existing while every colour still resolves, and the page looks nearly right with its grounds and borders gone. |
+
 ```css
-@import '@aesc/brand/tokens.css';
+@import '@aesc/brand/tokens.css';       /* plain */
+@import '@aesc/brand/tokens.theme.css'; /* Tailwind 4 */
 
 .hero      { background: var(--color-zlato); color: var(--color-mastilo); }
 .figure    { font-family: var(--font-podaci); font-variant-numeric: tabular-nums; }
@@ -71,8 +79,12 @@ dark ink, or it is absent.
 
 ## Editing
 
-`tokens.json` is the only file you edit by hand. `tokens.css` is generated — a pull request that
-changes it directly is a pull request that will be overwritten.
+`tokens.json` is the only file you edit by hand. `tokens.css` and `tokens.theme.css` are both
+generated from it — a pull request that changes either directly is one that will be overwritten.
+
+The font declarations are written once and work in both kinds of project:
+`var(--font-prikaz-face, 'Bricolage Grotesque')` picks up whatever `next/font` injected when the
+consumer self-hosts, and falls back to the plain family name when it does not.
 
 The raster icons come from `znak/crtaj-ikonu.py`, which draws them on the same 64-unit grid as
 `znak.svg`. If the mark ever changes, change the SVG and re-run the script together:
