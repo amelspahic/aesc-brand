@@ -2,8 +2,8 @@
 /**
  * guide.mjs — generate the brand guide from the tokens, so it cannot state a value that is false.
  *
- *     node brand/guide.mjs           # write brand/guide.html
- *     node brand/guide.mjs --check   # verify only; exit 1 if stale. CI runs this.
+ *     node guide.mjs           # write guide.html
+ *     node guide.mjs --check   # verify only; exit 1 if stale. CI runs it.
  *
  * ## The split, and why it is the whole point
  *
@@ -33,9 +33,19 @@
 
 import { readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { dirname, join } from 'node:path'
+import { dirname, join, relative } from 'node:path'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
+
+/**
+ * How to refer to a file of ours in a message.
+ *
+ * This directory is authored inside the website as `brand/` and PUBLISHED to its own repository,
+ * where the same files sit at the root. A hard-coded "brand/build.mjs" is therefore correct in one
+ * checkout and a lie in the other. Deriving it from the caller's working directory prints a path
+ * they can actually paste, in both.
+ */
+const ja = (f) => relative(process.cwd(), join(HERE, f)) || f
 const read = (f) => JSON.parse(readFileSync(join(HERE, f), 'utf8'))
 const T = read('tokens.json')
 const C = read('guide.content.json')
@@ -407,10 +417,10 @@ ${readFileSync(join(HERE, 'guide.js'), 'utf8').trim()}
 const out = join(HERE, 'guide.html')
 if (process.argv.includes('--check')) {
   const current = (() => { try { return readFileSync(out, 'utf8') } catch { return null } })()
-  if (current !== html) { console.error('✗ brand/guide.html is stale. Run: node brand/guide.mjs'); process.exit(1) }
+  if (current !== html) { console.error(`✗ ${ja('guide.html')} is stale. Run: node ${ja('guide.mjs')}`); process.exit(1) }
   console.log('✓ guide.html current — every value in it derives from tokens.json')
 } else {
   writeFileSync(out, html)
-  console.log(`✓ wrote brand/guide.html (${(html.length / 1024).toFixed(1)} KB)`)
+  console.log(`✓ wrote ${ja('guide.html')} (${(html.length / 1024).toFixed(1)} KB)`)
   console.log(`  ${Object.keys(T.boja).length} colours, ${T.dozvoljeno.length + T.zabranjeno.length} pairings recomputed, ${Object.keys(T.velicine).length} type steps, ${F.uredi.length} offices`)
 }

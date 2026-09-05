@@ -2,8 +2,11 @@
 /**
  * build.mjs — generate the two token files from tokens.json, and REFUSE to if a colour rule broke.
  *
- *     node brand/build.mjs           # write tokens.css and tokens.theme.css
- *     node brand/build.mjs --check   # verify only; exit 1 on drift. Use this in CI.
+ *     node build.mjs           # write tokens.css and tokens.theme.css
+ *     node build.mjs --check   # verify only; exit 1 on drift. CI runs it.
+ *
+ * Paths in this file's own output are printed relative to your working directory, because these
+ * files are authored at `brand/` inside the website and published at the root of their own repo.
  *
  * ## Why TWO output files
  *
@@ -35,9 +38,19 @@
 
 import { readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { dirname, join } from 'node:path'
+import { dirname, join, relative } from 'node:path'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
+
+/**
+ * How to refer to a file of ours in a message.
+ *
+ * This directory is authored inside the website as `brand/` and PUBLISHED to its own repository,
+ * where the same files sit at the root. A hard-coded "brand/build.mjs" is therefore correct in one
+ * checkout and a lie in the other. Deriving it from the caller's working directory prints a path
+ * they can actually paste, in both.
+ */
+const ja = (f) => relative(process.cwd(), join(HERE, f)) || f
 const tokens = JSON.parse(readFileSync(join(HERE, 'tokens.json'), 'utf8'))
 
 /* ---- WCAG 2.x relative luminance, on sRGB ------------------------------- */
@@ -89,7 +102,9 @@ for (const rule of tokens.zabranjeno) {
 }
 
 if (problems.length) {
-  console.error('\n✗ brand/tokens.json breaks its own colour law:\n')
+  console.error(`
+✗ ${ja('tokens.json')} breaks its own colour law:
+`)
   for (const p of problems) console.error('  ' + p + '\n')
   process.exit(1)
 }
@@ -186,7 +201,7 @@ if (process.argv.includes('--check')) {
     const path = join(HERE, o.file)
     const current = (() => { try { return readFileSync(path, 'utf8') } catch { return null } })()
     if (current !== o.body) {
-      console.error(`✗ brand/${o.file} is stale. Run: node brand/build.mjs`)
+      console.error(`✗ ${ja(o.file)} is stale. Run: node ${ja('build.mjs')}`)
       stale = true
     }
   }
@@ -199,7 +214,7 @@ if (process.argv.includes('--check')) {
 } else {
   for (const o of outputs) {
     writeFileSync(join(HERE, o.file), o.body)
-    console.log(`✓ wrote brand/${o.file}`)
+    console.log(`✓ wrote ${ja(o.file)}`)
   }
   console.log(`\n  ${tokens.dozvoljeno.length} allowed pairings re-measured, all clear:`)
   for (const r of tokens.dozvoljeno) {

@@ -1,0 +1,31 @@
+# The package checks itself, because after publishing nobody else can.
+#
+# While `brand/` lived inside the website, the website's deploy workflow ran these two checks. That
+# was the right place then and the wrong place now: a consumer should not be responsible for proving
+# that a dependency is internally consistent. So the colour law and the guide's freshness are
+# asserted here, on every push, and the website has dropped both steps.
+name: Provjera
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  provjera:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      # Recomputes every pairing in tokens.json from the hex values and fails, naming the pairing,
+      # if one no longer clears its floor. Also fails if tokens.css or tokens.theme.css has drifted
+      # from tokens.json — they are generated and must never be edited by hand.
+      - name: Zakon o boji
+        run: node build.mjs --check
+
+      # The guide states no value it was told; it derives all of them. This fails when somebody
+      # changes a colour and forgets to regenerate, which is the only way the document can still lie.
+      - name: Vodič je u koraku sa tokenima
+        run: node guide.mjs --check

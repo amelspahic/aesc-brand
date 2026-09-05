@@ -13,7 +13,7 @@
   var order = ['sistem', 'svjetlo', 'tamno']
   var rijec = { sistem: 'Sistem', svjetlo: 'Svjetlo', tamno: 'Tamno' }
   var stanje = 'sistem'
-  try { var v = localStorage.getItem(KEY); if (order.indexOf(v) > -1) stanje = v } catch (e) {}
+  try { var v = localStorage.getItem(KEY); if (order.indexOf(v) > -1) stanje = v } catch {}
 
   function primijeni() {
     var d = document.documentElement
@@ -35,7 +35,7 @@
     var b = e.target.closest && e.target.closest('#tema')
     if (!b) return
     stanje = order[(order.indexOf(stanje) + 1) % order.length]
-    try { localStorage.setItem(KEY, stanje) } catch (e2) {}
+    try { localStorage.setItem(KEY, stanje) } catch {}
     primijeni()
   })
 })()

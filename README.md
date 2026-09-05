@@ -13,7 +13,7 @@ signage — lives at the artifact URL in `GUIDE.url`. This package is the machin
 There is no npm registry involved and there does not need to be. Pin a git tag:
 
 ```bash
-pnpm add github:<user>/aesc-brand#v1.0.0
+pnpm add github:amelspahic/aesc-brand#v1.0.0
 ```
 
 Nothing here has a dependency, a build output, or a runtime. It is CSS, JSON and SVG.
@@ -83,7 +83,7 @@ Four steps, and none of them is "open the PDF and match the colours by eye".
 
 ```bash
 # 1. install
-pnpm add github:<user>/aesc-brand#v1.0.0
+pnpm add github:amelspahic/aesc-brand#v1.0.0
 
 # 2. fonts — one link, latin-ext included
 #    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..700&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -147,15 +147,15 @@ The raster icons come from `znak/crtaj-ikonu.py`, which draws them on the same 6
 OUT=znak python3 znak/crtaj-ikonu.py
 ```
 
-## Lifting this into its own repo
+## Where this lives
 
-It is currently a directory inside the website. The moment a second project needs it:
+It is published as its own repository, `aesc-brand`, and authored inside the website at `brand/`.
+`git subtree` keeps the two as one history rather than two copies — see `PUBLISHING.md` for the
+push and pull commands and for why this is not a submodule.
+
+The website still imports `brand/tokens.theme.css` by relative path, because it is the authoring
+home. A *second* project installs the published package instead:
 
 ```bash
-git subtree split --prefix=brand -b brand-only
-cd .. && git clone -b brand-only aesc-website aesc-brand
-cd aesc-brand && git tag v1.0.0
+pnpm add github:amelspahic/aesc-brand#v1.0.0
 ```
-
-History for these files comes with it. Then add it back to the website as a dependency, so the site
-consumes the same package everything else does and there is exactly one palette.
