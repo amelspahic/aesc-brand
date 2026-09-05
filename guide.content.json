@@ -1,0 +1,145 @@
+{
+  "napomena": "The WORDS of the guide. Every VALUE it states — hex, ratio, size, easing — is derived from tokens.json by guide.mjs and appears nowhere in this file. If you find a number here, it is in the wrong file.",
+
+  "naslov": "Boja i pokret.",
+  "podnaslov": "Sistem vizualnog identiteta &middot; izdanje 2026",
+  "lede": "The identity of an accounting firm in Zenica and Sarajevo, written down so it can be applied somewhere else without being reinvented. Six colours, three typefaces, one mark and a short list of things that do not bend.",
+  "zaKoga": {
+    "naslov": "What this is for",
+    "tekst": "A printer setting a business card, a signwriter, a developer starting a second product, an agency writing a campaign. Everything here is measured, not preferred — the contrast figures are recomputed from the hex values every time this page is generated."
+  },
+  "izvor": {
+    "naslov": "Source of truth",
+    "tekst": "brand/tokens.json\nbrand/guide.content.json\nbrand/guide.mjs"
+  },
+
+  "odjeljci": {
+    "znak": {
+      "broj": "01", "oznaka": "Znak",
+      "naslov": "A broken ring with an A inside it.",
+      "uvod": "The ring is open at the upper right and the lower left. That opening is the whole idea and it is not a flourish: a closed circle is a seal, and this firm's argument is that its books are open to be checked. Keep the gaps.",
+      "varijante": [
+        { "ime": "Primary",     "opis": "Ink on gold. The default lockup.",                                  "tlo": "zlato",    "ink": "mastilo", "mali": false },
+        { "ime": "On dark",     "opis": "Gold on ink. Same drawing, and the ratio holds either way.",         "tlo": "mastilo",  "ink": "zlato",   "mali": false },
+        { "ime": "One colour",  "opis": "Ink on stock. For a fax header, an embosser, a stamp.",              "tlo": "papir",    "ink": "mastilo", "mali": false },
+        { "ime": "Small sizes", "opis": "The A alone, heavier. The ring's stroke falls under 2px and hazes.", "tlo": "zlato",    "ink": "mastilo", "mali": true  }
+      ],
+      "pravila": [
+        { "naslov": "Clear space",  "tekst": "Keep a margin equal to the height of the <strong>A</strong> on all four sides. Nothing enters it — not a strapline, not a rule, not a page edge." },
+        { "naslov": "Minimum size", "tekst": "Full mark: <span class=\"mono\">32&nbsp;px</span> on screen, <span class=\"mono\">12&nbsp;mm</span> in print. Below that, the A alone. Never scale the ring's stroke independently of the drawing." },
+        { "naslov": "The wordmark", "tekst": "AESC in the display face at its heaviest weight, with <em>d.o.o.</em> set small in the data face, uppercase and tracked, sitting on the baseline. The suffix is legal identification and drops on small surfaces; the mark never does." }
+      ],
+      "nikad": "Do not close the ring. Do not rotate it. Do not fill the counter of the A. Do not set the mark in a colour outside the six below, or place the gold mark on any light ground. Do not add a strapline lockup — the firm has no strapline, and one invented for a layout becomes a promise somebody has to keep."
+    },
+
+    "boja": {
+      "broj": "02", "oznaka": "Boja",
+      "naslov": "Six values, and one law about which may touch.",
+      "uvod": "Gold is a <em>field</em>, not an accent. It is the ground a whole panel sits on, carrying near-black type. The instinct to use it as a highlight colour on white is the single most common way this identity gets broken, and the numbers below are why.",
+      "parovi": "WCAG contrast, recomputed from the hex values when this page was generated. <strong>7:1</strong> is the house floor for text at any size; <strong>3:1</strong> is acceptable only for type above 24&nbsp;px.",
+      "print": "The sRGB values above are the source of truth. These CMYK builds are derived arithmetically and are an unproofed starting point for a press operator, not a specification — always proof on the actual stock."
+    },
+
+    "pismo": {
+      "broj": "03", "oznaka": "Pismo",
+      "naslov": "Three voices, and each one only ever says its own thing.",
+      "uvod": "The system's discipline is that a typeface is assigned a <em>job</em>, not a size. A number is always in the mono. A heading is always in the display face. Body copy never appears at display size, and the display face never sets a paragraph.",
+      "skala": "Every step is a <code>clamp()</code> solved between 320&nbsp;px and 1280&nbsp;px. Text steps grow gently so a small phone stays readable; display steps grow hard so a wide screen gets the drama. The two ends given are the real minimum and maximum.",
+      "biljeske": [
+        { "naslov": "The width axis is the point", "tekst": "Large type reads optically wider than small type at the same nominal width, so the biggest sizes are narrowed to compensate and the smallest are left alone. Tracking cannot fake this — it opens the counters instead of closing the sidebearings." },
+        { "naslov": "Optical size drives itself", "tekst": "Set <code>font-optical-sizing: auto</code> and never name <code>opsz</code> in <code>font-variation-settings</code> — naming it switches the automatic behaviour off. One file then serves both a 92&nbsp;px hero and a 22&nbsp;px heading." },
+        { "naslov": "Bosnian is not optional", "tekst": "Load <code>latin-ext</code> on all three faces. Without it <strong>č ć ž š đ</strong> fall back to a system face mid-word, which is visible and ugly. Set <code>lang=\"bs\"</code> so nothing auto-hyphenates Bosnian badly." }
+      ]
+    },
+
+    "prostor": {
+      "broj": "04", "oznaka": "Prostor i mreža",
+      "naslov": "Full-bleed bands on one unbroken left edge.",
+      "uvod": "The layout is a sequence of full-width colour bands, each one a room. Inside every band the content sits on a single container and hangs off a single left edge — the eyebrow, the heading, the paragraph and the first card all start on the same line. Four different left edges in one scroll is the fastest way to make a considered page look assembled.",
+      "biljeske": [
+        { "naslov": "Count before you choose", "tekst": "Pick the column count the items actually fill. Four services in three columns orphan one — they go four across on a wide screen, two on a tablet, one on a phone. Six of anything goes three across. An orphan at the end of a row is the clearest sign a layout was chosen before the content was counted." },
+        { "naslov": "Hairlines separate, they don't decorate", "tekst": "A rule is drawn only where two things genuinely divide. Any boundary that carries meaning uses the firmer rule; the faint one is ornament and never the only thing telling a reader that two blocks are different." },
+        { "naslov": "Panels are edge to edge", "tekst": "A coloured band bleeds to the full width of the page, always. Rounded, floating, shadowed cards belong to a different identity. The only radius in the system is the full pill on a button." }
+      ]
+    },
+
+    "pokret": {
+      "broj": "05", "oznaka": "Pokret",
+      "naslov": "The finished state is the default state.",
+      "uvod": "Motion here is a reward for arriving, never a condition of seeing. Nothing is hidden waiting to be revealed: a figure renders its real value in the markup and animates up to it only if a reader is there to watch. With no JavaScript, a blocked script, or reduced motion switched on, the page is simply already finished.",
+      "zavrsno": "<strong>Honour <code>prefers-reduced-motion</code> everywhere.</strong> Under it, everything is painted at its end state and no count-up runs. This is not an accessibility footnote in an accounting context — a number that is still moving is a number a reader cannot check."
+    },
+
+    "slika": {
+      "broj": "06", "oznaka": "Slika i podatak",
+      "naslov": "Drawn geometry, real photographs, or nothing.",
+      "uvod": "There is no stock photography in this identity and there will not be. A stranger's face standing in for a named employee is a lie with a person's name printed under it, and a bought photograph of a handshake says nothing an accountant would say.",
+      "kolone": [
+        { "naslov": "What may appear", "tekst": "Line drawings in <code>currentColor</code>, stroked and never filled, so one drawing is correct on every ground with no variant. Photographs of the actual people, the actual offices, the actual documents. Charts of figures that were genuinely published." },
+        { "naslov": "What may not", "tekst": "Stock photography. Invented testimonials, client logos or statistics. Illustration bought from a library. Anything AI-generated. Gradients, drop shadows, glows, and photographic textures laid over the gold." },
+        { "naslov": "The teal field means data", "tekst": "Reserve the data field for real, sourced, dated figures — and cite the source and the date beside them. Spending that ground on a testimonial or a call to action costs the one panel on which a number is believed." }
+      ],
+      "primjer": {
+        "oznaka": "1% prosječne neto plaće u FBiH",
+        "racun": "1.714 × 1% = ",
+        "rezultat": "17,14 KM",
+        "osnov": "Pravilnik o primjeni Zakona o porezu na dohodak, čl. 20 st. 7",
+        "uvod": "Every figure carries the rule it came from. This is the house style for a number, and it is the most transferable thing in the identity: the reader can check the arithmetic with a pencil."
+      }
+    },
+
+    "glas": {
+      "broj": "07", "oznaka": "Glas",
+      "naslov": "Say the thing, then stop.",
+      "uvod": "The writing is plain, specific and slightly dry. It does not sell, because the reader is already looking for an accountant; it demonstrates competence by being precise about something difficult.",
+      "parovi": [
+        { "da": "Vi se fokusirajte na biznis, a mi ćemo na brojke.", "ne": "Vaš pouzdani partner za sve računovodstvene potrebe." },
+        { "da": "Porodična firma u kojoj znate ko vodi vaše knjige.", "ne": "Tim iskusnih profesionalaca posvećen vašem uspjehu." },
+        { "da": "Recite nam čime se bavite i koliko dokumenata mjesečno prolazi kroz vašu firmu. Ponudu šaljemo nakon toga — ne prije.", "ne": "Kontaktirajte nas za besplatnu konsultaciju!" },
+        { "da": "Članak još nije prošao provjeru u odnosu na važeće propise i iznose.", "ne": "Silence about whether the article is current." }
+      ],
+      "biljeske": [
+        { "naslov": "Never promise a schedule", "tekst": "Say what arrives, not when. Every deadline in copy is a trigger somebody has to notice and meet, and a missed one is a visibly broken word." },
+        { "naslov": "Flag, don't quietly fix", "tekst": "When a figure or a rule has moved, mark the page as needing a check and say so plainly. A dated, honest warning reads as care. Silently rewriting history reads as neither." },
+        { "naslov": "Name the human", "tekst": "A claim about accuracy is signed by the person who checked it, with the date. An unsigned claim of currency is decoration wearing someone's job title." }
+      ]
+    },
+
+    "primjena": {
+      "broj": "08", "oznaka": "Primjena",
+      "naslov": "Off the web.",
+      "uvod": "The system is deliberately medium-agnostic: flat colour, stroked drawings and a typographic hierarchy survive a press, a vinyl cutter and a projector without adaptation. What follows is how each surface picks from it.",
+      "redovi": [
+        { "povrsina": "Business card",     "tlo": "Zlato or Papir",  "sta": "Mark and wordmark on the gold face, all contact detail in the data face on the reverse, ink on stock. Never both faces gold." },
+        { "povrsina": "Letterhead & invoice", "tlo": "Papir",        "sta": "One-colour mark, ink, top left. Legal identifiers — JIB, PDV, address — in the data face at 8–9&nbsp;pt in a footer rule. Amounts tabular, right-aligned, decimals on one column." },
+        { "povrsina": "Signage & door",    "tlo": "Zlato",           "sta": "Ink on gold, the mark at its largest legible size. Vinyl gold shifts warm; match to a proof, not to the hex." },
+        { "povrsina": "Social avatar",     "tlo": "Zlato",           "sta": "The mark alone on the gold square, centred, clear space kept. Never the wordmark — it is unreadable at 40&nbsp;px." },
+        { "povrsina": "Presentation",      "tlo": "Papir / Mastilo", "sta": "Alternate paper and ink slides the way the site alternates bands. Reserve one gold slide per deck for the single thing you want remembered." },
+        { "povrsina": "Another web product", "tlo": "—",             "sta": "Install the package and import the tokens. Renaming them is how two products drift apart." }
+      ]
+    },
+
+    "zakoni": {
+      "broj": "09", "oznaka": "Ne pregovara se",
+      "naslov": "Nine things that do not bend.",
+      "uvod": "Each of these was learned by getting it wrong once. They are short because they are meant to be handed to someone who has not read the rest of this document.",
+      "stavke": [
+        "<strong>Gold never touches a light ground as ink.</strong> Not as text, not as a border, not as a focus ring. It is a field that carries dark type, or it is absent.",
+        "<strong>Count the content before choosing the grid.</strong> Four items in three columns orphan one, and an orphan at the end of a row is the clearest sign the layout was picked first. Never a row with a single item stranded in it.",
+        "<strong>No stock photography, no invented testimonials, no invented client logos, no invented statistics, no pricing tiers.</strong> If it is not real, it does not appear.",
+        "<strong>Nothing load-bearing is revealed by scrolling.</strong> The phone numbers and the primary call to action are always rendered, script or no script.",
+        "<strong>A figure is a fact, and it carries its source.</strong> The number, the rule it came from, and the date it was published — together or not at all.",
+        "<strong>One left edge per page.</strong> Eyebrow, heading, paragraph and first card all begin on the same line, at every width.",
+        "<strong>Arrows, ticks and separators are drawn, never typed.</strong> No subset of the three brand faces covers <span class=\"mono\">→ ← ↗ ◆ ✓</span>, so a typed one is set in the reader's operating system font and differs on every machine.",
+        "<strong>The mark's ring stays open.</strong> No closed circle, no rotation, no fill.",
+        "<strong>Diacritics are not optional.</strong> Load <span class=\"mono\">latin-ext</span>. A fallback face appearing mid-word in <em>računovođa</em> is the most visible possible failure in this market."
+      ]
+    }
+  },
+
+  "podnozje": {
+    "oznaka": "Podaci firme &middot; type these, never retype them from memory",
+    "naslov": "The facts that must always be right.",
+    "napomenaSarajevo": "Sarajevo, not Ilidža. Stupska 19 stands in općina Ilidža and the postal address is often written that way, but the firm trades as Sarajevo and nobody searches for the other. Zenica is the <em>sjedište</em>; Sarajevo is the <em>podružnica</em>. The distinction is legal and belongs on anything official."
+  }
+}

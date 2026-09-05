@@ -9,6 +9,8 @@
     "tokens.css",
     "tokens.theme.css",
     "tokens.json",
+    "company.json",
+    "guide.html",
     "znak",
     "README.md"
   ],
@@ -20,10 +22,12 @@
     "./znak/znak-mali.svg": "./znak/znak-mali.svg",
     "./znak/znak-plocica.svg": "./znak/znak-plocica.svg",
     "./znak/favicon.ico": "./znak/favicon.ico",
-    "./znak/apple-icon.png": "./znak/apple-icon.png"
+    "./znak/apple-icon.png": "./znak/apple-icon.png",
+    "./company.json": "./company.json",
+    "./guide.html": "./guide.html"
   },
   "scripts": {
-    "build": "node build.mjs",
-    "check": "node build.mjs --check"
+    "build": "node build.mjs && node guide.mjs",
+    "check": "node build.mjs --check && node guide.mjs --check"
   }
 }

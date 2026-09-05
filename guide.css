@@ -1,0 +1,237 @@
+:root {
+  color-scheme: light;
+
+  /* Brand — fixed, and the same six values in every theme. */
+  --zlato:        #f6bf1f;
+  --zlato-duboko: #d9a30c;
+  --mastilo:      #17140d;
+  --papir:        #fbf8f1;
+  --tinta:        #0d4f47;
+  --tinta-polje:  #033d36;
+
+  /* Page roles. Light values; the two dark blocks below redefine only these. */
+  --ground:    #fbf8f1;
+  --ground-2:  #f2ede1;
+  --ink:       #17140d;
+  --ink-quiet: #514d45;
+  --ink-faint: #68655d;
+  --rule:      #aea99f;
+  --rule-firm: #88847a;
+  --accent:    #0d4f47;
+
+  /* The gold field, and the deep-teal data field. Both re-declare the whole set,
+     which is the mechanism that lets one component be correct on any of them. */
+  --gold-ground: #f6bf1f;
+  --gold-ink:    #17140d;
+  --gold-rule:   rgba(23,20,13,.34);
+
+  --ink-ground:  #17140d;
+  --ink-ink:     #f7f3e9;
+  --ink-quiet-2: #b6b2a8;
+  --ink-rule:    rgba(247,243,233,.24);
+
+  --teal-ground: #033d36;
+  --teal-ink:    #fbf8f1;
+  --teal-quiet:  #cbc7bd;
+  --teal-rule:   rgba(251,248,241,.24);
+
+  --prikaz: 'Bricolage Grotesque', ui-sans-serif, system-ui, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --tijelo: 'Archivo', ui-sans-serif, system-ui, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --podaci: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --band:  clamp(3.5rem, 1.667rem + 9.167vw, 7rem);
+  --block: clamp(2rem, 1.333rem + 3.333vw, 3.25rem);
+  --row:   clamp(1.25rem, 1.083rem + 0.833vw, 1.75rem);
+
+  --shell: 74rem;
+  --gutter: clamp(1.25rem, 0.6rem + 3.2vw, 3rem);
+  --ease-out: cubic-bezier(.2,.7,.3,1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ground:    #12100a;
+    --ground-2:  #1c1912;
+    --ink:       #f7f3e9;
+    --ink-quiet: #aaa69c;
+    --ink-faint: #8c8981;
+    --rule:      #4e4a42;
+    --rule-firm: #6d6960;
+    --accent:    #6bb3a7;
+    /* The gold field steps down at night — a full #f6bf1f slab at 2am is painful,
+       and #d9a30c still carries mastilo ink at 8.05:1. */
+    --gold-ground: #d9a30c;
+    /* The inverted band RISES in dark rather than sinking below the page. */
+    --ink-ground:  #292418;
+    --ink-ink:     #f7f3e9;
+    --ink-quiet-2: #bfbcb4;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ground:    #12100a;
+  --ground-2:  #1c1912;
+  --ink:       #f7f3e9;
+  --ink-quiet: #aaa69c;
+  --ink-faint: #8c8981;
+  --rule:      #4e4a42;
+  --rule-firm: #6d6960;
+  --accent:    #6bb3a7;
+  --gold-ground: #d9a30c;
+  --ink-ground:  #292418;
+  --ink-ink:     #f7f3e9;
+  --ink-quiet-2: #bfbcb4;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--tijelo);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  font-optical-sizing: auto;
+}
+
+/* ---- bands: the architecture the site is built from --------------------- */
+.band { padding-block: var(--band); background: var(--ground); color: var(--ink); }
+.band--alt   { background: var(--ground-2); }
+.band--gold  { background: var(--gold-ground); color: var(--gold-ink); }
+.band--ink   { background: var(--ink-ground);  color: var(--ink-ink); }
+.band--teal  { background: var(--teal-ground); color: var(--teal-ink); }
+
+.band--gold  { --ink: var(--gold-ink); --ink-quiet: var(--gold-ink); --rule: var(--gold-rule); --rule-firm: rgba(23,20,13,.55); --accent: var(--gold-ink); }
+.band--ink   { --ink: var(--ink-ink);  --ink-quiet: var(--ink-quiet-2); --rule: var(--ink-rule); --rule-firm: rgba(247,243,233,.42); --accent: var(--zlato); }
+.band--teal  { --ink: var(--teal-ink); --ink-quiet: var(--teal-quiet); --rule: var(--teal-rule); --rule-firm: rgba(251,248,241,.42); --accent: var(--zlato); }
+
+.shell { max-width: var(--shell); margin-inline: auto; padding-inline: var(--gutter); }
+
+/* ---- type -------------------------------------------------------------- */
+h1, h2, h3, h4 {
+  font-family: var(--prikaz);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -.025em;
+  font-variation-settings: 'wdth' 92;
+  text-wrap: balance;
+  margin: 0;
+}
+h1 { font-size: clamp(2.3rem, 1.159rem + 5.702vw, 5.721rem); font-weight: 800; line-height: .95; letter-spacing: -.034em; font-variation-settings: 'wdth' 88; }
+h2 { font-size: clamp(1.841rem, 1.369rem + 2.362vw, 3.259rem); font-variation-settings: 'wdth' 94; }
+h3 { font-size: clamp(1.392rem, 1.209rem + .918vw, 1.943rem); line-height: 1.12; letter-spacing: -.018em; font-variation-settings: 'wdth' 100; }
+h4 { font-size: 1.125rem; line-height: 1.2; letter-spacing: -.01em; font-variation-settings: 'wdth' 100; }
+
+p { margin: 0; text-wrap: pretty; max-width: 34em; }
+.lede { font-size: clamp(1.254rem, 1.163rem + .459vw, 1.53rem); line-height: 1.45; max-width: 30em; }
+.quiet { color: var(--ink-quiet); }
+strong { font-weight: 600; }
+
+.eyebrow {
+  font-family: var(--podaci);
+  font-size: .8125rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--ink-quiet);
+  margin: 0;
+}
+.band--teal .eyebrow, .band--ink .eyebrow { color: var(--zlato); }
+
+.mono { font-family: var(--podaci); font-variant-numeric: tabular-nums; }
+
+a { color: var(--accent); text-underline-offset: 4px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+/* ---- section scaffolding ----------------------------------------------- */
+.head { display: grid; gap: var(--row); grid-template-columns: 1fr; margin-bottom: var(--block); }
+@media (min-width: 60rem) { .head { grid-template-columns: 7rem minmax(0, 1fr); gap: 0 3rem; align-items: start; } }
+.head .num { font-family: var(--podaci); font-size: .8125rem; color: var(--ink-faint); letter-spacing: .1em; padding-top: .5rem; }
+.head .txt { display: grid; gap: var(--row); }
+
+.stack { display: grid; gap: var(--block); }
+.rows  { display: grid; gap: var(--row); }
+
+hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
+
+/* ---- the mark ---------------------------------------------------------- */
+.mark-row { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(1.5rem, 4vw, 3rem); }
+.mark { display: block; }
+.wordmark { display: flex; align-items: baseline; gap: .5rem; font-family: var(--prikaz); }
+.wordmark b { font-size: 2.75rem; font-weight: 800; letter-spacing: -.03em; font-variation-settings: 'wdth' 92; }
+.wordmark span { font-family: var(--podaci); font-size: .8125rem; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-quiet); }
+
+.mark-grid { display: grid; gap: var(--row); grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); }
+.mark-cell { display: grid; gap: .75rem; justify-items: start; }
+.mark-plate { display: grid; place-items: center; width: 100%; aspect-ratio: 3 / 2; border: 1px solid var(--rule); }
+
+/* ---- swatches ---------------------------------------------------------- */
+.swatches { display: grid; gap: 1px; background: var(--rule); grid-template-columns: 1fr; }
+@media (min-width: 34rem) { .swatches { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 62rem) { .swatches { grid-template-columns: repeat(3, 1fr); } }
+.sw { padding: 1.25rem 1.25rem 1rem; display: grid; gap: .35rem; min-height: 10.5rem; align-content: end; }
+.sw b { font-family: var(--prikaz); font-size: 1.25rem; font-weight: 700; font-variation-settings: 'wdth' 100; letter-spacing: -.01em; }
+.sw .hex { font-family: var(--podaci); font-size: .875rem; letter-spacing: .04em; }
+.sw .use { font-size: .8125rem; line-height: 1.4; opacity: .82; }
+
+/* ---- pairing table ----------------------------------------------------- */
+/* Three across, because there are SIX. Six items in four tracks leaves a dead cell,
+   which is the exact failure rule 02 is about — count the content, then pick the grid. */
+.pairs { display: grid; gap: 1px; background: var(--rule); grid-template-columns: 1fr; }
+@media (min-width: 34rem) { .pairs { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 62rem) { .pairs { grid-template-columns: repeat(3, 1fr); } }
+.pair { padding: 1.5rem 1.25rem; display: grid; gap: .5rem; align-content: center; min-height: 8.5rem; }
+.pair .big { font-family: var(--prikaz); font-size: 1.5rem; font-weight: 700; font-variation-settings: 'wdth' 96; letter-spacing: -.015em; }
+.pair .ratio { font-family: var(--podaci); font-size: 1.375rem; font-variant-numeric: tabular-nums; }
+.pair .verdict { font-family: var(--podaci); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; }
+.pair--bad { outline: 2px solid #93231a; outline-offset: -2px; }
+
+/* ---- type specimens ---------------------------------------------------- */
+.spec { display: grid; gap: .5rem; padding-block: var(--row); border-top: 1px solid var(--rule); }
+.spec .meta { font-family: var(--podaci); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+.spec .sample { font-family: var(--prikaz); }
+
+table { width: 100%; border-collapse: collapse; font-size: .9375rem; }
+th, td { text-align: left; padding: .7rem 1rem .7rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-family: var(--podaci); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); font-weight: 500; }
+td.n, th.n { font-family: var(--podaci); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.scroller { overflow-x: auto; }
+
+/* ---- rules list -------------------------------------------------------- */
+.laws { display: grid; gap: 0; counter-reset: law; list-style: none; padding: 0; margin: 0; }
+.laws li { display: grid; grid-template-columns: 2.5rem minmax(0,1fr); gap: 1rem; padding-block: var(--row); border-top: 1px solid var(--rule); }
+.laws li::before { counter-increment: law; content: counter(law, decimal-leading-zero); font-family: var(--podaci); font-size: .8125rem; color: var(--ink-faint); padding-top: .2rem; }
+.laws p { max-width: 46em; }
+
+/* ---- token block ------------------------------------------------------- */
+pre { margin: 0; overflow-x: auto; background: var(--ground-2); border: 1px solid var(--rule); padding: 1.25rem; font-family: var(--podaci); font-size: .8125rem; line-height: 1.7; }
+.band--ink pre { background: rgba(247,243,233,.06); border-color: var(--ink-rule); }
+code { font-family: var(--podaci); font-size: .9em; }
+
+.cols { display: grid; gap: var(--block); grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); }
+
+.tema {
+  display: inline-flex; align-items: center; gap: .5rem;
+  border: 2px solid currentColor; background: transparent; color: inherit;
+  border-radius: 999px; padding: .4rem .9rem .4rem .75rem; cursor: pointer;
+  font-family: var(--podaci); font-size: .75rem; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  transition: background-color .2s var(--ease-out), color .2s var(--ease-out);
+}
+.tema:hover { background: currentColor; }
+.tema:hover .tema-t, .tema:hover svg { color: var(--gold-ground); }
+.tema:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.tema svg { width: 1em; height: 1em; }
+.masthead-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; }
+
+.chip { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid currentColor; border-radius: 999px; padding: .2rem .7rem; font-family: var(--podaci); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; }
+
+footer { padding-block: var(--band) calc(var(--band) / 1.6); }
+
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }

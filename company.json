@@ -1,0 +1,32 @@
+{
+  "napomena": "The firm's facts, for surfaces the website does not own — a letterhead, an invoice template, a second product. src/lib/company.ts is the site's copy and remains the source for structured data; provjera.test.mjs asserts the two agree, so this file cannot drift silently. Add a field here only when company.ts has it.",
+  "legalName": "AESC d.o.o. Zenica",
+  "email": "info@aesc.ba",
+  "web": "https://aesc.ba",
+  "foundingDate": "2009-04-06",
+  "taxId": "4218662370002",
+  "vatId": "218662370002",
+  "radnoVrijeme": "pon–pet 08:00–16:30",
+  "uredi": [
+    {
+      "slug": "zenica",
+      "naziv": "Zenica",
+      "uloga": "Sjedište",
+      "adresa": "Zmaja od Bosne 27, 2. sprat",
+      "postanski": "72000",
+      "grad": "Zenica",
+      "telefon": "032 443 231",
+      "fax": "032 443 230"
+    },
+    {
+      "slug": "sarajevo",
+      "naziv": "Sarajevo",
+      "uloga": "Podružnica",
+      "adresa": "Stupska 19/D-I objekat C3",
+      "postanski": "71000",
+      "grad": "Sarajevo",
+      "telefon": "033 868 990",
+      "fax": null
+    }
+  ]
+}
