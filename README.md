@@ -4,7 +4,8 @@ The AESC visual identity as a thing you can install, rather than a PDF somebody 
 
 Six colours, three typefaces, one mark, and a colour law that **fails the build** when it is broken.
 The human-readable guide — what the colours mean, how to set the type, what to do in print and on
-signage — lives at the artifact URL in `GUIDE.url`. This package is the machine-readable half.
+signage — is `guide.html`, generated from these same files. This package is the machine-readable
+half of the same source.
 
 ---
 
@@ -13,7 +14,7 @@ signage — lives at the artifact URL in `GUIDE.url`. This package is the machin
 There is no npm registry involved and there does not need to be. Pin a git tag:
 
 ```bash
-pnpm add github:amelspahic/aesc-brand#v1.0.1
+pnpm add github:amelspahic/aesc-brand#v1.0.0
 ```
 
 Nothing here has a dependency, a build output, or a runtime. It is CSS, JSON and SVG.
@@ -83,7 +84,7 @@ Four steps, and none of them is "open the PDF and match the colours by eye".
 
 ```bash
 # 1. install
-pnpm add github:amelspahic/aesc-brand#v1.0.1
+pnpm add github:amelspahic/aesc-brand#v1.0.0
 
 # 2. fonts — one link, latin-ext included
 #    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..700&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -157,5 +158,5 @@ The website still imports `brand/tokens.theme.css` by relative path, because it 
 home. A *second* project installs the published package instead:
 
 ```bash
-pnpm add github:amelspahic/aesc-brand#v1.0.1
+pnpm add github:amelspahic/aesc-brand#v1.0.0
 ```
