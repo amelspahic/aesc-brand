@@ -1,0 +1,13 @@
+<!-- The mark on its gold plate — the avatar / app-icon form. The only version that carries its own
+     colours, because a social platform gives you no ground to sit on. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AESC">
+  <rect width="64" height="64" rx="14" fill="#f6bf1f"/>
+  <g fill="none" stroke="#17140d" stroke-width="3.6" stroke-linecap="round">
+    <path d="M53.65 19.5A25 25 0 1 1 10.35 44.5"/>
+    <path d="M10.35 19.5A25 25 0 0 1 53.65 44.5"/>
+  </g>
+  <g fill="none" stroke="#17140d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M23 41 32 22l9 19"/>
+    <path d="M26 35h12"/>
+  </g>
+</svg>

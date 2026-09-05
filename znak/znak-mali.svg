@@ -1,0 +1,8 @@
+<!-- The mark below 32px: the A alone, heavier and larger in the box. The ring is not scaled down,
+     it is REMOVED — a 3.6/64 stroke is under 2px at 32 and reads as grey haze around the letter. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AESC">
+  <g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15 48 32 15l17 33"/>
+    <path d="M22.5 38h19"/>
+  </g>
+</svg>

@@ -1,0 +1,22 @@
+{
+  "name": "@aesc/brand",
+  "version": "1.0.0",
+  "description": "AESC visual identity — tokens, mark and colour law, as one installable thing.",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "files": ["tokens.css", "tokens.json", "znak", "README.md"],
+  "exports": {
+    "./tokens.css": "./tokens.css",
+    "./tokens.json": "./tokens.json",
+    "./znak/znak.svg": "./znak/znak.svg",
+    "./znak/znak-mali.svg": "./znak/znak-mali.svg",
+    "./znak/znak-plocica.svg": "./znak/znak-plocica.svg",
+    "./znak/favicon.ico": "./znak/favicon.ico",
+    "./znak/apple-icon.png": "./znak/apple-icon.png"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "check": "node build.mjs --check"
+  }
+}
